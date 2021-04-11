@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="return_rank_form" model="ir.ui.view">
+        <field name="name">return rank</field>
+        <field name="model">return.rank</field>
+        <field name="arch" type="xml">
+            <form string="Form Rank">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="rank_name" />
+                        </group>
+                        <group>
+                            <field name="rank_type" />
+                        </group>
+                        <group>
+                            <field name="rank_number" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="return_rank_tree" model="ir.ui.view">
+        <field name="name">return Rank</field>
+        <field name="model">return.rank</field>
+        <field name="arch" type="xml">
+            <tree string="Tree Rank">
+                <field name="rank_name" />
+                <field name="rank_type" />
+                <field name="rank_number" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="return_rank_action">
+        <field name="name">Form Rank</field>
+        <field name="res_model">return.rank</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="context" eval="{'search_default_my_courses': 1}"/> my_courses ==> name of filter -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first Rank </p>
+        </field>
+    </record>
+
+    <menuitem id="return_main_menu"  name="Return Of Salary"/>
+    <menuitem id="return_main_menu_config"  name="Configuration" parent="return_main_menu"/>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="type_return_form" model="ir.ui.view">
+        <field name="name">type return</field>
+        <field name="model">type.of.return</field>
+        <field name="arch" type="xml">
+            <form string="Form Type Of Return">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="type_return_name" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="type_return_tree" model="ir.ui.view">
+        <field name="name">Type Of return</field>
+        <field name="model">type.of.return</field>
+        <field name="arch" type="xml">
+            <tree string="Tree Type Of return">
+                <field name="type_return_name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="type_of_return_action">
+        <field name="name">Form Type Of return</field>
+        <field name="res_model">type.of.return</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first Type Of Return </p>
+        </field>
+    </record>
+
+    <menuitem id="type_of_return" name="Add Type Of Return" parent="return_main_menu_config" action="type_of_return_action"  sequence="3"/>
+</odoo>
