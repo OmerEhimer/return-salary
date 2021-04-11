@@ -21,6 +21,7 @@
         'views/return_rank.xml',
         'views/return_unit.xml',
         'views/type_of_return.xml',
+        'views/return_employee.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

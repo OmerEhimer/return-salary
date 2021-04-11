@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="return_employee_form" model="ir.ui.view">
+        <field name="name">return Employee</field>
+        <field name="model">return.employee</field>
+        <field name="arch" type="xml">
+            <form string="Form Return Employee">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number_employee" />
+                            <field name="name_employee" />
+                        </group>
+                        <group>
+                            <field name="rank_id" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
+                            <field name="unit_id" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="Return Employee" string="Return Employee">
+                            <field name="return_line_ids">
+                                <tree editable="button">
+                                    <field name="form_id" invisible="1"/>
+                                    <field name="type_return" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
+                                    <field name="return_salary" />
+                                    <field name="month" />
+                                    <field name="year" />
+                                    <field name="status" widget="radio" />
+                                    <field name="notes" />
+                                </tree>
+                            </field>                            
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="return_employee_tree" model="ir.ui.view">
+        <field name="name">return Employee</field>
+        <field name="model">return.employee</field>
+        <field name="arch" type="xml">
+            <tree string="Tree Return Employee">
+                <field name="number_employee" />
+                <field name="name_employee" />
+                <field name="rank_id" />
+                <field name="unit_id" />
+                
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="return_employee_action">
+        <field name="name">Form Return Employee</field>
+        <field name="res_model">return.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first Return Employee </p>
+        </field>
+    </record>
+
+    <menuitem id="return_employee_main_menu"  name="Add Return Employee" parent="return_main_menu" action="return_employee_action" sequence="0"/>
+ 
+</odoo>

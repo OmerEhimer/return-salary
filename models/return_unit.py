@@ -6,6 +6,7 @@ from datetime import timedelta
 class ReturnRank(models.Model):
     _name = 'return.rank'
     _description = "rank"
+    _rec_name = "rank_name"
 
     rank_name = fields.Char(string="Rank Name", required=True,)
     rank_type = fields.Selection(

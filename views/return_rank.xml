@@ -46,6 +46,6 @@
     </record>
 
     <menuitem id="return_main_menu"  name="Return Of Salary"/>
-    <menuitem id="return_main_menu_config"  name="Configuration" parent="return_main_menu"/>
+    <menuitem id="return_main_menu_config"  name="Configuration" parent="return_main_menu" sequence="1"/>
     
 </odoo>
