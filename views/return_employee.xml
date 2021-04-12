@@ -7,6 +7,11 @@
         <field name="arch" type="xml">
             <form string="Form Return Employee">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="count_type_return"  type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="count_type_return_lines"  widget="statinfo" />
+                        </button>
+                    </div>
                     <group>
                         <group>
                             <field name="number_employee" />
@@ -21,17 +26,20 @@
                     <notebook>
                         <page name="Return Employee" string="Return Employee">
                             <field name="return_line_ids">
-                                <tree editable="button">
+                                <tree editable="button" decoration-danger="status=='1'" decoration-success="status=='2'">
                                     <field name="form_id" invisible="1"/>
+                                    <field name="id_return" widget="checkbox"/>
                                     <field name="type_return" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
-                                    <field name="return_salary" />
+                                    <field name="return_salary" sum="return_salary"/>
                                     <field name="month" />
                                     <field name="year" />
-                                    <field name="status"/>
-                                    <!-- <field name="notes" /> -->
-                                    <button name="print_employee" type="object" string="Print" class="oe_highlight"  attrs="{'invisible':[('status', '!=', '2')]}" />
+                                    <field name="status" />
+                                    <field name="reason_return" />
+                                    <field name="date_cashing" attrs="{'invisible':[('status', '!=', '2')]}"/>
+                                    <field name="notes" attrs="{'invisible':[('status', '!=', '2')]}"/>
+                                    <button name="print_employee" type="object" string="Print" class="oe_highlight"  attrs="{'invisible':[('status', '!=','2')]}" />                        
                                 </tree>
-                            </field>                            
+                            </field>    
                         </page>
                     </notebook>
                 </sheet>

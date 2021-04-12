@@ -13,6 +13,25 @@ class ReturnEmployee(models.Model):
     rank_id = fields.Many2one('return.rank', string="Rank", required=True,)
     unit_id = fields.Many2one('return.unit', string="Unit", required=True,)
     return_line_ids = fields.One2many('return.employee.lines', 'form_id', string='line_ids')
+    count_type_return_lines = fields.Integer(compute='get_count_type_line' , string="Count")  
+
+    @api.multi
+    def count_type_return(self):
+        return {
+            'name': _('Return'),
+            'domain': [('form_id','=', self.ids)],
+            'view_type': 'form',
+            'res_model': 'return.employee.lines',
+            'view_mode': '',
+            # 'type': 'ir.actions.act_window',
+        }
+
+    @api.multi
+    def get_count_type_line(self): 
+        for rec in self:   
+            count_type = rec.env['return.employee.lines'].search_count([('form_id','=', self.ids)])
+            self.count_type_return_lines=count_type
+
 
 class ReturnEmployeeLines(models.Model):
     _name = 'return.employee.lines'
@@ -47,12 +66,26 @@ class ReturnEmployeeLines(models.Model):
         ('10', 'أكتوبر'),
         ('11', 'نوفمبر'),
         ('12', 'ديسمبر'),
-        ('14', 'Omer'),
+
      ], string="Month" , required=True)      
 
     return_salary = fields.Float(string='Amount', required=True, )
-    status = fields.Selection([('1','لم يتم التسليم'),('2','تم التسليم')], string="Status", default='1',)
+    status = fields.Selection([('1','لم يتم الصرف'),('2','تم الصرف  ')], string="Status", default='1',)
     notes = fields.Text(string='Notes',)
+    date_cashing = fields.Date(string='Date', default=fields.Date.today())
+    reason_return = fields.Text(string='Reason Of Return', default='غياب')
+    id_return = fields.Boolean()
+    
+    _sql_constraints = [
+        (
+            'constraint_uniq_name',
+            'unique(form_id,type_return,year,month)',
+            'لا يمكن حساب أكثر من مرتجع في نفس الشهر '
+        ),
+    ]  
+    
 
     def print_employee(self):
         print("Print Any")
+
+      

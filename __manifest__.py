@@ -22,6 +22,9 @@
         'views/return_unit.xml',
         'views/type_of_return.xml',
         'views/return_employee.xml',
+
+        'reports/report.xml',
+        
     ],
     # only loaded in demonstration mode
     'demo': [
