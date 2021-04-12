@@ -27,14 +27,19 @@
                                     <field name="return_salary" />
                                     <field name="month" />
                                     <field name="year" />
-                                    <field name="status" widget="radio" />
-                                    <field name="notes" />
+                                    <field name="status"/>
+                                    <!-- <field name="notes" /> -->
+                                    <button name="print_employee" type="object" string="Print" class="oe_highlight"  attrs="{'invisible':[('status', '!=', '2')]}" />
                                 </tree>
                             </field>                            
                         </page>
                     </notebook>
-
                 </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refrech':'recipients'}"/>
+                </div>
             </form>
         </field>
     </record>
@@ -48,7 +53,6 @@
                 <field name="name_employee" />
                 <field name="rank_id" />
                 <field name="unit_id" />
-                
             </tree>
         </field>
     </record>

@@ -13,7 +13,7 @@
     # for the full list
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['mail'],
 
     # always loaded
     'data': [

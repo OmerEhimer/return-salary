@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-
 from odoo import models, fields, api, exceptions, _
 from datetime import timedelta
 
 class ReturnEmployee(models.Model):
     _name = 'return.employee'
+    _inherit = ['mail.thread','mail.activity.mixin']
     _description = "Return of Employee"
+    _rec_name = "number_employee"
 
-    number_employee = fields.Integer(string="Number Employee", required=True,)
+    number_employee = fields.Char(string="Number Employee", required=True,)
     name_employee = fields.Char(string="Name Employee", required=True,)
     rank_id = fields.Many2one('return.rank', string="Rank", required=True,)
     unit_id = fields.Many2one('return.unit', string="Unit", required=True,)
@@ -48,6 +49,9 @@ class ReturnEmployeeLines(models.Model):
         ('12', 'ديسمبر'),
      ], string="Month" , required=True)      
 
-    return_salary = fields.Float(string='Salary', required=True, )
-    status = fields.Boolean(string='Status',)
+    return_salary = fields.Float(string='Amount', required=True, )
+    status = fields.Selection([('1','لم يتم التسليم'),('2','تم التسليم')], string="Status", default='1',)
     notes = fields.Text(string='Notes',)
+
+    def print_employee(self):
+        print("Print Any")
