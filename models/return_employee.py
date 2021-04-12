@@ -47,6 +47,7 @@ class ReturnEmployeeLines(models.Model):
         ('10', 'أكتوبر'),
         ('11', 'نوفمبر'),
         ('12', 'ديسمبر'),
+        ('14', 'Omer'),
      ], string="Month" , required=True)      
 
     return_salary = fields.Float(string='Amount', required=True, )
