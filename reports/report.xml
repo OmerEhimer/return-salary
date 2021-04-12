@@ -8,5 +8,5 @@
         report_type="qweb-pdf"
         name="return_salary.report_return_employee"
         file="return_salary.report_return_employee" />  
-
+        
 </odoo>
