@@ -87,3 +87,5 @@ class ReturnEmployeeLines(models.Model):
 
     def print_employee(self):
         print("Print Any")
+
+      
