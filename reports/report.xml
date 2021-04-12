@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- PDf And HTML report -->
+    <report
+        id="report_employee_cards"
+        model="return.employee"
+        string="Print Return Employee"
+        report_type="qweb-pdf"
+        name="return_salary.report_return_employee"
+        file="return_salary.report_return_employee" />  
+
+</odoo>
