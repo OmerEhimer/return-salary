@@ -2,11 +2,10 @@
 <odoo>
     <!-- PDf And HTML report -->
     <report
-        id="report_employee_cards"
-        model="return.employee"
+        id="report_employee"
+        model="print.return.employee"
         string="Print Return Employee"
-        report_type="qweb-pdf"
+        report_type="qweb-html"
         name="return_salary.report_return_employee"
         file="return_salary.report_return_employee" />  
-        
 </odoo>

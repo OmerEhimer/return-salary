@@ -24,6 +24,9 @@
         'views/return_employee.xml',
 
         'reports/report.xml',
+        'reports/print_form_employee.xml',
+        
+        'wizards/wizard_print_return.xml',
         
     ],
     # only loaded in demonstration mode

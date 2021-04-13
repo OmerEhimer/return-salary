@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="wizard_return_employee_form" model="ir.ui.view">
+        <field name="name">return Employee</field>
+        <field name="model">print.return.employee</field>
+        <field name="arch" type="xml">
+            <form string="Form Return Employee">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number_employee" />
+                            <field name="name_employee" />
+                        </group>
+                        <group>
+                            <field name="rank_id" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
+                            <field name="unit_id" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
+                        </group>
+                        <field name="active_return_emp_id" invisible="1"/>
+                    </group>
+
+                    <notebook>
+                        <page name="Return Employee" string="Return Employee">
+                            <field name="return_line_ids">
+                                <tree editable="button">
+                                    <field name="form_id" invisible="1"/>
+                                    <field name="type_return"  options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
+                                    <field name="return_salary" />
+                                    <field name="month" />
+                                    <field name="year" />
+                                    <field name="status" />
+                                    <field name="reason_return" />
+                                    <field name="date_cashing" />
+                                    <field name="notes" />
+                                    <field name="active_return_lines_id" invisible="1"/>
+                                </tree>
+                            </field>    
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_return_employee" model="ir.actions.act_window">
+        <field name="name">Return Employee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">print.return.employee</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_active_return_emp_id':active_id}</field>
+        <field name="binding_model_id" ref="return_salary.model_return_employee"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

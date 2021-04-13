@@ -21,6 +21,9 @@
                             <field name="rank_id" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
                             <field name="unit_id" options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
                         </group>
+                        <group>
+                            <field name="user_id" />
+                        </group>
                     </group>
 
                     <notebook>
@@ -37,7 +40,6 @@
                                     <field name="reason_return" />
                                     <field name="date_cashing" attrs="{'invisible':[('status', '!=', '2')]}"/>
                                     <field name="notes" attrs="{'invisible':[('status', '!=', '2')]}"/>
-                                    <button name="print_employee" type="object" string="Print" class="oe_highlight"  attrs="{'invisible':[('status', '!=','2')]}" />                        
                                 </tree>
                             </field>    
                         </page>

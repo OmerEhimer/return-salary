@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_return_employee">
+        <!-- <t t-call="web.internal_layout"> -->
+            <t t-call="web.html_container">
+                <div class="page">
+                    <div class="oe_structure">
+                        <div class="row">
+                            <table align="center"  border="0" width="80%" > 
+                                <tr>
+                                    <td style="text-align:center; padding:10px !important;"><strong>بسم الله الرحمن الرحيم</strong></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center; padding:10px !important;"><strong>قوات الدعم السريع</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>            
+            </t>
+        <!-- </t>     -->
+    </template>
+</odoo>
+
+

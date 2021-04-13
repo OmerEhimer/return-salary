@@ -8,12 +8,14 @@ class ReturnEmployee(models.Model):
     _description = "Return of Employee"
     _rec_name = "number_employee"
 
-    number_employee = fields.Char(string="Number Employee", required=True,)
-    name_employee = fields.Char(string="Name Employee", required=True,)
-    rank_id = fields.Many2one('return.rank', string="Rank", required=True,)
-    unit_id = fields.Many2one('return.unit', string="Unit", required=True,)
-    return_line_ids = fields.One2many('return.employee.lines', 'form_id', string='line_ids')
-    count_type_return_lines = fields.Integer(compute='get_count_type_line' , string="Count")  
+    number_employee = fields.Char(string="Number Employee", required=True, track_visibility="always",)
+    name_employee = fields.Char(string="Name Employee", required=True,  track_visibility="always",)
+    rank_id = fields.Many2one('return.rank', string="Rank", required=True,  track_visibility="always",)
+    unit_id = fields.Many2one('return.unit', string="Unit", required=True,  track_visibility="always",)
+    return_line_ids = fields.One2many('return.employee.lines', 'form_id', string='line_ids',  track_visibility="always",)
+    count_type_return_lines = fields.Integer(compute='get_count_type_line' , string="Count" ,  track_visibility="always",)  
+    user_id = fields.Many2one('res.users',string="Resposible",readonly="1",default=lambda self:self.env.user)
+
 
     @api.multi
     def count_type_return(self):
@@ -37,7 +39,7 @@ class ReturnEmployeeLines(models.Model):
     _name = 'return.employee.lines'
 
     form_id = fields.Many2one('return.employee', string='Lines') 
-    type_return = fields.Many2one('type.of.return', string="Type Of Return", required=True,)
+    type_return = fields.Many2one('type.of.return', string="Type Of Return", required=True,  track_visibility="always",)
     
     def year_selection(self):
             year = 2020 # replace 2000 with your a start year
@@ -66,13 +68,13 @@ class ReturnEmployeeLines(models.Model):
         ('10', 'أكتوبر'),
         ('11', 'نوفمبر'),
         ('12', 'ديسمبر'),
-     ], string="Month" , required=True)      
+     ], string="Month" , required=True, track_visibility="always",)      
 
-    return_salary = fields.Float(string='Amount', required=True, )
-    status = fields.Selection([('1','لم يتم الصرف'),('2','تم الصرف  ')], string="Status", default='1',)
-    notes = fields.Text(string='Notes',)
-    date_cashing = fields.Date(string='Date', default=fields.Date.today())
-    reason_return = fields.Text(string='Reason Of Return', default='غياب')
+    return_salary = fields.Float(string='Amount', required=True, track_visibility="always",)
+    status = fields.Selection([('1','لم يتم الصرف'),('2','تم الصرف  ')], string="Status", default='1',  track_visibility="always",)
+    notes = fields.Text(string='Notes',  track_visibility="always",)
+    date_cashing = fields.Date(string='Date Cashing', default=fields.Date.today(),  track_visibility="always",)
+    reason_return = fields.Text(string='Reason Of Return', default='غياب', track_visibility="always")
     id_return = fields.Boolean()
     
     _sql_constraints = [
@@ -82,9 +84,11 @@ class ReturnEmployeeLines(models.Model):
             'لا يمكن حساب أكثر من مرتجع في نفس الشهر '
         ),
     ]  
-    
 
-    def print_employee(self):
-        print("Print Any")
-
-      
+    @api.multi
+    def get_print(self):
+            # data={
+            # 'model':'return.employee.lines',
+            # 'form':self.read()[0]
+            # }
+        return self.env.ref('return_salary.report_employee').report_action(self)    
