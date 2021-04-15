@@ -23,6 +23,7 @@
                             <field name="return_line_ids">
                                 <tree editable="button">
                                     <field name="form_id" invisible="1"/>
+                                    <field name="id_return" widget="checkbox"/>
                                     <field name="type_return"  options="{'no_create_edit':True,'no_create':True,'no_open':True}"/>
                                     <field name="return_salary" />
                                     <field name="month" />
@@ -37,6 +38,10 @@
                         </page>
                     </notebook>
                 </sheet>
+                <footer>
+                    <button name="" string="Print" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
             </form>
         </field>
     </record>
